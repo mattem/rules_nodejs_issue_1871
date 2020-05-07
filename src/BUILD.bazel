@@ -1,0 +1,16 @@
+load("@npm_bazel_typescript//:index.bzl", "ts_library")
+load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
+
+ts_library(
+    name = "src",
+    srcs = ["main.ts"],
+    deps = [
+        "@npm//googleapis",
+    ],
+)
+
+nodejs_binary(
+    name = "bin",
+    entry_point = ":main.ts",
+    data = [":src"],
+)
